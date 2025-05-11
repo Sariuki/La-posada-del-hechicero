@@ -2,17 +2,18 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import productRoutes from './routes/products.js';
-const app = express();
+
+// Inicializar app y configurar dotenv
 dotenv.config();
-
-require('dotenv').config();
-
-const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Configuración de middlewares
+app.use(cors());
+app.use(express.json());
+
 // Configuración de base de datos
-const mysql = require('mysql2');
+import mysql from 'mysql2';
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -28,19 +29,14 @@ connection.connect(err => {
   }
 });
 
-// Iniciar servidor
+// Rutas
 app.get('/', (req, res) => {
   res.send('Servidor funcionando correctamente');
 });
 
-app.listen(port, () => {
-  console.log(`Servidor escuchando en el puerto ${port}`);
-});
-app.use(cors());
-app.use(express.json());
 app.use('/api/products', productRoutes);
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Servidor backend en puerto ${PORT}`);
+// Iniciar servidor
+app.listen(port, () => {
+  console.log(`Servidor escuchando en el puerto ${port}`);
 });
