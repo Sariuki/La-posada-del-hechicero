@@ -1,4 +1,4 @@
-const API_URL = 'https://api.render.com/deploy/srv-d0fts7buibrs73f30840?key=krQINgU1BT4';
+const API_URL = 'https://la-posada-del-hechicero.onrender.com';
 const container = document.getElementById('product-list');
 const category = container.dataset.category || null;
 
