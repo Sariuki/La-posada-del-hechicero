@@ -2,13 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Accesorios - La Posada del Hechicero</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Accesorios</h1>
-    <p>Tapetes, fundas, dados y más</p>
+    <div class="header-content">
+      <h1>La Posada del Hechicero</h1>
+      <p>Tienda de cartas TCG, juegos de mesa y accesorios</p>
+    </div>
   </header>
 
   <nav>
@@ -21,7 +24,10 @@
   </nav>
 
   <main>
-    <h2>Complementos de Juego</h2>
+    <section class="reveal">
+      <h2>Accesorios</h2>
+      <p>Tapetes, fundas, dados y más.</p>
+    </section>
     <div id="product-list" data-category="accesorios">Cargando productos...</div>
   </main>
 
@@ -30,5 +36,16 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+    reveals.forEach(r => observer.observe(r));
+  </script>
 </body>
 </html>
