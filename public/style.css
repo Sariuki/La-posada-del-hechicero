@@ -9,37 +9,53 @@
   box-sizing: border-box;
 }
 
-/* Variables globales mágicas */
 :root {
   --bg-main: #fef9f5;
   --bg-dark: #2c1b47;
   --color-primary: #6d28d9;
+  --color-primary-dark: #4b1f91;
   --color-secondary: #ff6b6b;
   --color-light: #ffffff;
   --color-text: #1f1f1f;
+  --color-muted: #666666;
   --font-heading: 'Poppins', sans-serif;
   --font-body: 'Open Sans', sans-serif;
+  --transition-speed: 0.3s;
 }
 
-/* Body base */
+/* Cuerpo base */
 body {
   font-family: var(--font-body);
   background: var(--bg-main);
   color: var(--color-text);
-  line-height: 1.7;
+  line-height: 1.75;
   overflow-x: hidden;
 }
 
-/* Animaciones de entrada base */
+/* Tipografía general */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary-dark);
+}
+
+p {
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Animaciones */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes floatWave {
@@ -48,17 +64,10 @@ body {
 }
 
 @keyframes slideIn {
-  0% {
-    transform: translateX(-80px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  from { transform: translateX(-80px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
 }
 
-/* Clases utilitarias para animación */
 .fade-in-up {
   animation: fadeInUp 1s ease-out forwards;
   opacity: 0;
@@ -73,17 +82,8 @@ body {
   animation: floatWave 4s ease-in-out infinite;
 }
 
-/* Contenedores y secciones */
-section {
-  padding: 4rem 2rem;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
 /* ========================================
-   🧭 HEADER + NAVBAR STICKY + SVG SHAPE
+   🧭 HEADER + NAVBAR
 ======================================== */
 
 header {
@@ -93,39 +93,23 @@ header {
   text-align: center;
   padding: 4rem 2rem 6rem;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-  overflow: hidden;
 }
 
 header h1 {
-  font-family: var(--font-heading);
-  font-size: 2.8rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
   animation: fadeInUp 1s ease-out forwards;
 }
 
 header p {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 300;
   animation: fadeInUp 1.5s ease-out forwards;
 }
 
-/* Forma decorativa SVG simulada */
-header::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 80px;
-  width: 100%;
-  background: url('https://www.svgrepo.com/show/413879/wave.svg') no-repeat center;
-  background-size: cover;
-  transform: scaleY(-1);
-  opacity: 0.15;
-}
-
-/* Navbar sticky */
+/* Navbar */
 nav {
-  background: #1b1b1b;
+  background: var(--bg-dark);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -136,7 +120,7 @@ nav ul {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
 }
 
 nav li {
@@ -147,11 +131,10 @@ nav a {
   font-family: var(--font-heading);
   color: var(--color-light);
   text-transform: uppercase;
-  font-weight: 500;
   font-size: 0.95rem;
   position: relative;
-  padding: 0.75rem 0.5rem;
-  display: block;
+  padding: 0.75rem 1rem;
+  display: inline-block;
 }
 
 nav a::after {
@@ -159,109 +142,21 @@ nav a::after {
   position: absolute;
   width: 100%;
   height: 3px;
-  bottom: 8px;
-  left: 0;
-  background-color: var(--color-secondary);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease-in-out;
-}
-
-nav a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-/* ========================================
-   🧭 HEADER + NAVBAR STICKY + SVG SHAPE
-======================================== */
-
-header {
-  position: relative;
-  background: linear-gradient(135deg, var(--color-primary), var(--bg-dark));
-  color: var(--color-light);
-  text-align: center;
-  padding: 4rem 2rem 6rem;
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-  overflow: hidden;
-}
-
-header h1 {
-  font-family: var(--font-heading);
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
-  animation: fadeInUp 1s ease-out forwards;
-}
-
-header p {
-  font-size: 1.1rem;
-  font-weight: 300;
-  animation: fadeInUp 1.5s ease-out forwards;
-}
-
-/* Forma decorativa SVG simulada */
-header::after {
-  content: "";
-  position: absolute;
   bottom: 0;
   left: 0;
-  height: 80px;
-  width: 100%;
-  background: url('https://www.svgrepo.com/show/413879/wave.svg') no-repeat center;
-  background-size: cover;
-  transform: scaleY(-1);
-  opacity: 0.15;
-}
-
-/* Navbar sticky */
-nav {
-  background: #1b1b1b;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-nav ul {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0.5rem 1rem;
-}
-
-nav li {
-  margin: 0 1rem;
-}
-
-nav a {
-  font-family: var(--font-heading);
-  color: var(--color-light);
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 0.95rem;
-  position: relative;
-  padding: 0.75rem 0.5rem;
-  display: block;
-}
-
-nav a::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 3px;
-  bottom: 8px;
-  left: 0;
   background-color: var(--color-secondary);
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.3s ease-in-out;
+  transition: transform var(--transition-speed) ease-in-out;
 }
 
 nav a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
+
 /* ========================================
-   📦 PRODUCT CARDS / CATÁLOGO MODULAR
+   📦 PRODUCTOS / SECCIÓN CATÁLOGO
 ======================================== */
 
 #product-list {
@@ -269,10 +164,9 @@ nav a:hover::after {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
-  animation: fadeInUp 0.8s ease-out both;
+  padding: 0 2rem;
 }
 
-/* Tarjeta individual */
 .product {
   background: var(--color-light);
   border-radius: 12px;
@@ -281,155 +175,109 @@ nav a:hover::after {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.6s ease-out both;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
   position: relative;
-  border: 2px solid transparent;
 }
 
 .product:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  border-color: var(--color-primary);
 }
 
 .product h3 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: var(--color-primary-dark);
   margin-bottom: 0.5rem;
-  font-family: var(--font-heading);
 }
 
 .product p {
-  font-size: 0.95rem;
-  color: #444;
+  font-size: 1rem;
+  color: var(--color-muted);
   margin-bottom: 0.5rem;
 }
 
 .product strong {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-top: auto;
-  display: block;
   color: var(--color-secondary);
   font-weight: bold;
 }
 
-.product span.stock {
-  font-size: 0.85rem;
-  color: #666;
+/* Botón en tarjetas */
+.product button {
+  background: var(--color-primary);
+  color: var(--color-light);
+  border: none;
+  border-radius: 5px;
+  padding: 0.8rem 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background var(--transition-speed);
 }
+
+.product button:hover {
+  background: var(--color-primary-dark);
+}
+
 /* ========================================
-   📦 PRODUCT CARDS / CATÁLOGO MODULAR
+   ✨ FORMULARIOS
 ======================================== */
 
-#product-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
-  animation: fadeInUp 0.8s ease-out both;
-}
-
-/* Tarjeta individual */
-.product {
+form {
+  max-width: 600px;
+  margin: 2rem auto;
   background: var(--color-light);
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 0.6s ease-out both;
-  position: relative;
-  border: 2px solid transparent;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+form input, form textarea, form button {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+form input:focus, form textarea:focus {
+  outline: none;
   border-color: var(--color-primary);
+  box-shadow: 0 0 5px rgba(109, 40, 217, 0.3);
 }
 
-.product h3 {
-  font-size: 1.2rem;
-  color: var(--color-primary-dark);
-  margin-bottom: 0.5rem;
-  font-family: var(--font-heading);
-}
-
-.product p {
-  font-size: 0.95rem;
-  color: #444;
-  margin-bottom: 0.5rem;
-}
-
-.product strong {
-  font-size: 1.1rem;
-  margin-top: auto;
-  display: block;
-  color: var(--color-secondary);
+form button {
+  background: var(--color-primary);
+  color: var(--color-light);
+  border: none;
+  cursor: pointer;
   font-weight: bold;
+  transition: background var(--transition-speed);
 }
 
-.product span.stock {
-  font-size: 0.85rem;
-  color: #666;
+form button:hover {
+  background: var(--color-primary-dark);
 }
+
 /* ========================================
-   ⚓ FOOTER + ANIMACIONES + DETALLES
+   ⚓ FOOTER
 ======================================== */
 
 footer {
   background: var(--bg-dark);
-  color: white;
+  color: var(--color-light);
   text-align: center;
   padding: 2rem 1rem;
   margin-top: 4rem;
   font-size: 0.95rem;
   letter-spacing: 0.5px;
-  position: relative;
-  z-index: 2;
 }
 
-footer::before {
-  content: "";
-  position: absolute;
-  top: -20px;
-  left: 0;
-  width: 100%;
-  height: 30px;
-  background: url('https://www.svgrepo.com/show/418313/wave-top.svg') no-repeat center;
-  background-size: cover;
-  transform: scaleY(-1);
-  opacity: 0.1;
+footer a {
+  color: var(--color-secondary);
 }
 
-/* === Links y botones animados === */
-a.cta-button {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-a.cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* === Transiciones generales === */
-button,
-input,
-a {
-  transition: all 0.3s ease;
-}
-
-/* === Scroll suave para animaciones en pantalla === */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: none;
+footer a:hover {
+  text-decoration: underline;
 }
