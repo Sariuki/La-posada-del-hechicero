@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La Posada del Hechicero</title>
+  <title>La Posada del Hechicero - Inicio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
     <div class="header-content">
       <h1>La Posada del Hechicero</h1>
-      <p>Especialistas en cartas TCG, juegos de mesa y accesorios de fantasía</p>
+      <p>Tienda de cartas TCG, juegos de mesa y accesorios</p>
     </div>
   </header>
 
@@ -23,22 +23,27 @@
     </ul>
   </nav>
 
- <main>
-  <section class="hero-section">
-    <div class="hero-content">
-      <h2>Bienvenido a la tienda donde empieza la aventura</h2>
-      <p>
-        Explora nuestras categorías para descubrir productos únicos, expansiones
-        y elementos esenciales para tus juegos favoritos.
-      </p>
-      <a href="tcg.html" class="cta-button">Ver productos</a>
-    </div>
-  </section>
-</main>
-
+  <main>
+    <section class="reveal">
+      <h2>Bienvenido a La Posada del Hechicero</h2>
+      <p>Explora nuestras categorías y sumérgete en el mundo del coleccionismo y la estrategia.</p>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 La Posada del Hechicero. Todos los derechos reservados.</p>
+    <p>© 2025 La Posada del Hechicero</p>
   </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+    reveals.forEach(r => observer.observe(r));
+  </script>
 </body>
 </html>
