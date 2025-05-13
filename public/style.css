@@ -470,3 +470,17 @@ input::placeholder {
     font-size: 1.8rem;
   }
 }
+/* === Layout principal que fuerza el footer abajo === */
+html, body {
+  height: 100%;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; /* toma el espacio disponible entre header/nav y footer */
+}
