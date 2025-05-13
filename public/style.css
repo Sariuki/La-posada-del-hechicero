@@ -1,15 +1,19 @@
-/* =====================================
-   🌈 RESET + VARIABLES MODERNAS
-===================================== */
+/* =======================================
+   🌑 1. RESET + VARIABLES DE DISEÑO ÉPICO
+======================================= */
+
 :root {
-  --color-bg: #fafafa;
-  --color-header: #0a0028;
-  --color-primary: #7b2cbf;
-  --color-accent: #ff6f61;
-  --color-light: #ffffff;
-  --color-dark: #1a1a1a;
-  --font-title: 'Poppins', sans-serif;
+  --bg-main: #0d0b1f;
+  --bg-panel: #1e1a3a;
+  --bg-accent: #321b61;
+  --color-text: #e2e2f2;
+  --color-primary: #9a57ff;
+  --color-accent: #ff5f7e;
+  --color-highlight: #41ead4;
+  --font-title: 'Cinzel', serif;
   --font-body: 'Open Sans', sans-serif;
+  --glow-primary: 0 0 10px #9a57ff;
+  --glow-accent: 0 0 10px #ff5f7e;
 }
 
 * {
@@ -20,179 +24,279 @@
 
 html, body {
   scroll-behavior: smooth;
-  background: var(--color-bg);
+  background-color: var(--bg-main);
+  color: var(--color-text);
   font-family: var(--font-body);
-  color: var(--color-dark);
+  line-height: 1.6;
   overflow-x: hidden;
 }
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 
-/* =====================================
-   🎬 ANIMACIONES DE ENTRADA
-===================================== */
-@keyframes fadeSlide {
-  from { opacity: 0; transform: translateY(50px); }
-  to { opacity: 1; transform: translateY(0); }
+img {
+  max-width: 100%;
+  display: block;
 }
 
-@keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 0px transparent; }
-  50% { box-shadow: 0 0 15px var(--color-accent); }
-}
+/* =======================================
+   🌌 2. CABECERA CON ESTILO ARCANO
+======================================= */
 
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* =====================================
-   🧭 HEADER + NAVBAR
-===================================== */
 header {
-  background: var(--color-header);
-  color: var(--color-light);
-  padding: 3rem 1rem 5rem;
+  background: radial-gradient(circle at center, #1b1035 0%, #0d0b1f 100%);
   text-align: center;
-  animation: fadeSlide 1s ease-out forwards;
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  padding: 5rem 2rem 7rem;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 10;
+  animation: fadeInHeader 1.2s ease-out forwards;
+}
+
+@keyframes fadeInHeader {
+  0% {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 header h1 {
   font-family: var(--font-title);
-  font-size: 2.5rem;
+  font-size: 3rem;
+  color: var(--color-primary);
+  text-shadow: var(--glow-primary);
+  margin-bottom: 1rem;
+  animation: glowTitle 3s infinite alternate ease-in-out;
+}
+
+@keyframes glowTitle {
+  from {
+    text-shadow: 0 0 10px #9a57ff;
+  }
+  to {
+    text-shadow: 0 0 25px #9a57ff;
+  }
 }
 
 header p {
-  font-size: 1.1rem;
-  opacity: 0.8;
-  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  color: #aaa;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.85;
 }
+/* =======================================
+   🧭 3. NAVBAR ÉPICO PEGADO Y DINÁMICO
+======================================= */
 
 nav {
-  background: var(--color-dark);
+  background: rgba(10, 10, 30, 0.95);
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 999;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
 nav ul {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 0.75rem;
+  padding: 1rem 2rem;
   list-style: none;
+  gap: 2rem;
 }
 
 nav li a {
-  color: var(--color-light);
-  font-weight: 600;
-  text-transform: uppercase;
-  margin: 0 1rem;
-  padding: 0.5rem;
+  font-family: var(--font-title);
+  font-size: 1rem;
+  color: var(--color-text);
+  padding: 0.5rem 0;
   position: relative;
+  transition: color 0.3s ease;
 }
 
 nav li a::after {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: 0;
   width: 0%;
   height: 2px;
-  background: var(--color-accent);
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-accent);
   transition: width 0.3s ease;
+}
+
+nav li a:hover {
+  color: var(--color-accent);
 }
 
 nav li a:hover::after {
   width: 100%;
 }
 
-/* =====================================
-   🦸 HERO SECTION
-===================================== */
+/* =======================================
+   ⚡ 4. HERO DE ENTRADA ARCANO
+======================================= */
+
 .hero-section {
-  background: linear-gradient(135deg, #6610f2, #d63384);
-  color: white;
+  background: linear-gradient(to right, #1e1039 0%, #3b0f55 100%);
+  color: var(--color-text);
   text-align: center;
   padding: 6rem 2rem;
-  animation: fadeSlide 1.2s ease-out;
+  position: relative;
+  overflow: hidden;
+  animation: fadeSlideUp 1.2s ease;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 80%);
+  animation: rotateGlow 30s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
 }
 
 .hero-content {
+  position: relative;
+  z-index: 2;
   max-width: 700px;
   margin: 0 auto;
+  animation: fadeSlideUp 1.5s ease;
 }
 
 .hero-content h2 {
-  font-size: 2rem;
   font-family: var(--font-title);
+  font-size: 2.5rem;
   margin-bottom: 1rem;
+  color: var(--color-highlight);
+  text-shadow: 0 0 12px var(--color-highlight);
 }
 
 .hero-content p {
   font-size: 1.1rem;
+  color: #ccc;
   margin-bottom: 2rem;
+  line-height: 1.6;
 }
+
+/* =======================================
+   🧙 5. BOTÓN LEGENDARIO
+======================================= */
 
 .cta-button {
   background: var(--color-accent);
   color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 30px;
+  padding: 0.9rem 2rem;
   font-weight: bold;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  border-radius: 40px;
+  border: 2px solid var(--color-accent);
+  cursor: pointer;
+  transition: all 0.3s ease;
   text-transform: uppercase;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgba(255, 95, 126, 0.4);
 }
 
 .cta-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(255, 111, 97, 0.6);
+  background: transparent;
+  color: var(--color-accent);
+  box-shadow: 0 0 20px rgba(255, 95, 126, 0.7);
 }
 
-/* =====================================
-   🃏 PRODUCT GRID
-===================================== */
+/* ANIMACIÓN GLOBAL */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =======================================
+   📦 6. PRODUCTOS ESTILO GRIMORIO
+======================================= */
+
 #product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
-  margin-top: 2rem;
+  padding: 3rem 1rem;
+  animation: fadeSlideUp 1.5s ease;
 }
 
 .product {
-  background: white;
+  background: linear-gradient(145deg, #181529, #232043);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 0 20px rgba(80, 45, 145, 0.1);
+  border: 1px solid rgba(255,255,255,0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeSlide 0.6s ease-out;
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1s ease;
+}
+
+.product::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(circle, rgba(255,255,255,0.04), transparent 70%);
+  transform: rotate(45deg);
+  animation: rotateShimmer 60s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotateShimmer {
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(360deg) scale(1); }
 }
 
 .product:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 0 30px rgba(155, 80, 255, 0.3);
+  border-color: var(--color-primary);
 }
 
 .product h3 {
-  color: var(--color-primary);
-  font-size: 1.2rem;
+  font-family: var(--font-title);
+  font-size: 1.3rem;
   margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  z-index: 2;
+  position: relative;
 }
 
 .product p {
   font-size: 0.95rem;
-  color: #333;
+  color: #bbb;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .product strong {
@@ -200,41 +304,55 @@ nav li a:hover::after {
   margin-top: 0.75rem;
   font-size: 1.1rem;
   color: var(--color-accent);
+  z-index: 2;
+  position: relative;
 }
 
 .product .stock {
   font-size: 0.85rem;
-  color: #666;
+  color: #888;
+  margin-top: 0.3rem;
+  display: block;
 }
 
-/* =====================================
-   🔍 FILTROS
-===================================== */
+/* =======================================
+   🔍 7. FILTROS DE BÚSQUEDA ARCANO
+======================================= */
+
 form {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  padding: 1rem 2rem;
+  background: #1d1a33;
+  border-radius: 10px;
   margin-top: 2rem;
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.03);
 }
 
 form input[type="text"],
 form input[type="number"] {
   padding: 0.6rem 1rem;
-  border: 2px solid #ddd;
+  border: 1px solid #444;
+  background: #101021;
+  color: white;
   border-radius: 30px;
   width: 200px;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 form input:focus {
-  border-color: var(--color-primary);
+  outline: none;
+  border-color: var(--color-highlight);
+  box-shadow: 0 0 10px var(--color-highlight);
 }
 
 form label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: #ccc;
   font-size: 0.9rem;
 }
 
@@ -242,16 +360,113 @@ form input[type="checkbox"] {
   transform: scale(1.2);
   accent-color: var(--color-accent);
 }
+/* =======================================
+   ⚓ 8. FOOTER MÍSTICO Y DECORATIVO
+======================================= */
 
-/* =====================================
-   ⚓ FOOTER
-===================================== */
 footer {
-  background: var(--color-dark);
-  color: white;
+  background: linear-gradient(to right, #0a0519, #1a092c);
+  color: #ccc;
   text-align: center;
-  padding: 2rem;
+  padding: 2.5rem 1rem;
   font-size: 0.9rem;
   margin-top: 4rem;
   position: relative;
+  z-index: 5;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+footer p {
+  opacity: 0.7;
+}
+
+/* Footer onda decorativa */
+footer::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: url('https://www.svgrepo.com/show/418313/wave-top.svg') no-repeat center;
+  background-size: cover;
+  opacity: 0.04;
+}
+
+/* =======================================
+   🎭 9. REVEAL POR SCROLL
+======================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* JS activador (debes incluir este script) */
+@media screen {
+  script {
+    content: `
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+    reveals.forEach(el => observer.observe(el));
+    `;
+  }
+}
+
+/* =======================================
+   🌟 10. EFECTOS TRANSICIÓN GLOBALES
+======================================= */
+
+a, button, .product, input, .cta-button {
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover,
+button:hover {
+  transform: translateY(-2px);
+}
+
+input::placeholder {
+  color: #888;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0b1f;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 10px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-content h2 {
+    font-size: 1.8rem;
+  }
 }
